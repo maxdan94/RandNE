@@ -1,7 +1,7 @@
 # scalemb
 
 ## Info:
-Implementation of [1]: "Billion-scale Network Embedding with Iterative Random Projection", Ziwei Zhang, Peng Cui, Haoyang Li, Xiao Wang and Wenwu Zhu, ICDM2018.
+Implementation of the scalable graph embeding method suggested in [1]
 
 NOTE THAT THIS IS NOT THE IMPLEMENTATION OF THE AUTHORS AND IT IS NOT GUARANTEED TO WORK.
 Implementation of the authors is here: https://github.com/ZW-ZHANG/RandNE
@@ -20,7 +20,7 @@ gcc scalemb.c -o scalemb -O9 -lm
 - ak's are the coeficient of A^k matrix such as defined in [1]
 
 ## Reference:
-[1] : https://papers-gamma.link/paper/110
+[1] : "Billion-scale Network Embedding with Iterative Random Projection", Ziwei Zhang, Peng Cui, Haoyang Li, Xiao Wang and Wenwu Zhu, ICDM2018. https://papers-gamma.link/paper/110
 
 ## First contributor:
 Maximilien Danisch  
