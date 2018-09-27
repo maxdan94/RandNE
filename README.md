@@ -22,7 +22,7 @@ gcc scalemb.c -o scalemb -O9 -lm
 - ak's are the coeficient of A^k matrix such as defined in [1]
 
 ### Reference:
-[1]: https://papers-gamma.link/paper/110
+[1] : https://papers-gamma.link/paper/110
 
 ### First contributor
 Maximilien Danisch  
