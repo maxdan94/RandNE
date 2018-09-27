@@ -4,9 +4,9 @@
 Implementation of the scalable graph embeding method suggested in [1]
 
 NOTE THAT THIS IS NOT THE IMPLEMENTATION OF THE AUTHORS AND IT IS NOT GUARANTEED TO WORK.
-Implementation of the authors is here: https://github.com/ZW-ZHANG/RandNE
+Implementation of the authors is here: https://github.com/ZW-ZHANG/RandNE.
 
-## to compile:
+## to compile:
 
 gcc scalemb.c -o scalemb -O9 -lm
 
