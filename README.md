@@ -18,6 +18,12 @@ gcc RandNE.c -o RandNE -O9 -lm
 - q is the order of the embbeding
 - ak's are the coeficient of A^k matrix such as defined in [1]
 
+## performance:
+
+On http://snap.stanford.edu/data/com-Orkut.html
+- d=128 and q=3: 20 minutes
+
+
 ## Reference:
 [1] : "Billion-scale Network Embedding with Iterative Random Projection", Ziwei Zhang, Peng Cui, Haoyang Li, Xiao Wang and Wenwu Zhu, ICDM2018. https://papers-gamma.link/paper/110
 
