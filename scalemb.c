@@ -15,7 +15,7 @@ gcc scalemb.c -o scalemb -O9 -lm
 
 to execute:
 ./scalemb net.txt emb.txt d q a0 a1 ... aq
-- net.txt should contain on each line: "i j\n" that is the input directed graph.
+- net.txt should contain on each line: "i j\n" that is the input graph.
 - emb.txt contains the resulting embedding (d floats on each line)
 - d is the dimention of the embeding
 - q is the order of the embbeding
