@@ -200,8 +200,9 @@ int main(int argc,char** argv){
 
 	FILE* file;
 
-	time_t t1,t2,t3;
+	time_t t0,t1,t2;
 	t1=time(NULL);
+	t0=t1;
 
 	printf("Reading edgelist from file %s\n",argv[1]);
 	g=readedgelist(argv[1]);
@@ -221,9 +222,17 @@ int main(int argc,char** argv){
 		a[i-5]=atof(argv[i]);
 	}
 
+	t2=time(NULL);
+	printf("- Time = %ldh%ldm%lds\n",(t2-t1)/3600,((t2-t1)%3600)/60,((t2-t1)%60));
+	t1=t2;
+
 	printf("Computing the embeding\n");
 
 	emb=RandNE(g, d, q, a);
+
+	t2=time(NULL);
+	printf("- Time = %ldh%ldm%lds\n",(t2-t1)/3600,((t2-t1)%3600)/60,((t2-t1)%60));
+	t1=t2;
 
 	printf("Printing embedding in file %s\n",argv[2]);
 	file=fopen(argv[2],"w");
@@ -232,6 +241,12 @@ int main(int argc,char** argv){
 
 	freegraph(g);
 	free(emb);
+
+	t2=time(NULL);
+	printf("- Time = %ldh%ldm%lds\n",(t2-t1)/3600,((t2-t1)%3600)/60,((t2-t1)%60));
+
+	printf("- Overall time = %ldh%ldm%lds\n",(t2-t0)/3600,((t2-t0)%3600)/60,((t2-t0)%60));
+
 	return 0;
 }
 
