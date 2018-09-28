@@ -18,7 +18,7 @@ gcc RandNE.c -o RandNE -O9 -lm
 - q is the order of the embbeding
 - ak's are the coeficient of A^k matrix such as defined in [1]
 
-## performance:
+## running time on a commodity machine:
 
 On http://snap.stanford.edu/data/com-Orkut.html
 - d=128 and q=3: 20 minutes
