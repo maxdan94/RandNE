@@ -2,7 +2,7 @@
 ## Info:
 Implementation of the scalable graph embeding method suggested in [1]
 
-NOTE THAT THIS IS NOT THE IMPLEMENTATION OF THE AUTHORS AND IT IS NOT GUARANTEED TO WORK.
+NOTE THAT THIS IS NOT THE IMPLEMENTATION OF THE AUTHORS OF [1]  AND IT IS NOT GUARANTEED TO WORK.
 Implementation of the authors is/will be here: https://github.com/ZW-ZHANG/RandNE.
 
 ## to compile:
