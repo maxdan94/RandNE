@@ -15,7 +15,7 @@ gcc scalemb.c -o scalemb -O9 -lm
 
 to execute:
 ./scalemb net.txt emb.txt d q a0 a1 ... aq
-- net.txt should contain on each line: "i j\n" that is the input graph.
+- net.txt should contain on each line: "u v\n" that is the input graph.
 - emb.txt contains the resulting embedding (d floats on each line)
 - d is the dimention of the embeding
 - q is the order of the embbeding
@@ -82,6 +82,7 @@ void freegraph(sparse *g){
 	free(g);
 }
 
+//normalised the vector vect such that ||vect||_2=1.
 void normalize(unsigned long n, double* vect){
 	unsigned long i;
 	double s=0;
@@ -94,6 +95,7 @@ void normalize(unsigned long n, double* vect){
 	}
 }
 
+//compute the scallar product v1.v2
 double scallarproduct(unsigned long n, double *v1, double *v2){
 	unsigned long i;
 	double s=0;
@@ -103,6 +105,8 @@ double scallarproduct(unsigned long n, double *v1, double *v2){
 	return s;
 }
 
+//Return d orthonormal vectors of dimention n using https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process
+//The d n-vecors are concatenanted into a single vector of length n*d.
 double *GramSchmidt(unsigned long n, unsigned d){
 	double s;
 	unsigned long m=n*d,d1,d2,m1,m2,i;
@@ -126,6 +130,7 @@ double *GramSchmidt(unsigned long n, unsigned d){
 	return vect;
 }
 
+//let A be the adjacency matrix of graph g. This put in v2 the product of the matrix A by v2. That is: v2=A*v1.
 void prod(sparse* g, double* v1, double* v2){
 	unsigned long i;
 	bzero(v2,sizeof(double)*g->n);
@@ -135,6 +140,7 @@ void prod(sparse* g, double* v1, double* v2){
 	}
 }
 
+//add a*v_in to v_out.
 void add(unsigned long n, double a, double* v_in, double* v_out){
 	unsigned long i;
 	for (i=0;i<n;i++){
@@ -171,6 +177,7 @@ double *RandNE(sparse *g,unsigned d,unsigned q, double* a){
 	return emb;
 }
 
+//printing the result
 void printres(FILE* file,unsigned long n,unsigned d,double *emb){
 	unsigned long i,j;
 	for (i=0;i<n;i++){
