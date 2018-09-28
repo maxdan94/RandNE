@@ -1,4 +1,3 @@
-# scalemb
 
 ## Info:
 Implementation of the scalable graph embeding method suggested in [1]
