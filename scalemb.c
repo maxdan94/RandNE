@@ -31,8 +31,7 @@ Reference:
 #include <math.h>
 #include <strings.h>
 
-#define NLINKS 10000000 //maximum number of links, will increase if needed
-
+#define NLINKS 100000000 //maximum number of links, will increase if needed
 
 // graph datastructure:
 typedef struct {
@@ -113,8 +112,9 @@ double *GramSchmidt(unsigned long n, unsigned d){
 	double *vect=malloc(m*sizeof(double));
 
 	srand(time(NULL));
+
 	for (i=0;i<m;i++){
-		vect[i]= ((double)rand()/(RAND_MAX));//supposed to be the normal distribution with sigma=1/d
+		vect[i]= ((double)rand()/(RAND_MAX));//CAREFUL!!!!!! According to the version of the authors, this is supposed to be the normal distribution with sigma=1/d
 	}
 	for (d1=0;d1<d;d1++){
 		m1=n*d1;
@@ -134,7 +134,7 @@ double *GramSchmidt(unsigned long n, unsigned d){
 void prod(sparse* g, double* v1, double* v2){
 	unsigned long i;
 	bzero(v2,sizeof(double)*g->n);
-	for (i=0;i<g->e;i++){
+	for (i=0;i<g->e;i++){//better using a classical martix vector multiplication to make it parallel: v2[i]=sum_{(i,j)} v1[i].
 		v2[g->el[i].s]+=v1[g->el[i].t];
 		v2[g->el[i].t]+=v1[g->el[i].s];
 	}
@@ -147,7 +147,6 @@ void add(unsigned long n, double a, double* v_in, double* v_out){
 		v_out[i]+=a*v_in[i];
 	}
 }
-
 
 //cf algo 1 of [1]
 double *RandNE(sparse *g,unsigned d,unsigned q, double* a){
