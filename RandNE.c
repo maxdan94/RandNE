@@ -46,7 +46,7 @@ typedef struct {
 	edge *el;//edge list
 } sparse;
 
-//compute the maximum of three unsigned long
+//compute the maximum of three unsigned long ints
 inline unsigned long max3(unsigned long a,unsigned long b,unsigned long c){
 	a=(a>b) ? a : b;
 	return (a>c) ? a : c;
@@ -81,7 +81,7 @@ void freegraph(sparse *g){
 	free(g);
 }
 
-//normalised the vector vect such that ||vect||_2=1.
+//normalize the vector vect such that ||vect||_2=1.
 void normalize(unsigned long n, double* vect){
 	unsigned long i;
 	double s=0;
@@ -94,7 +94,7 @@ void normalize(unsigned long n, double* vect){
 	}
 }
 
-//compute the scallar product v1.v2
+//compute the scalar product v1.v2
 double scallarproduct(unsigned long n, double *v1, double *v2){
 	unsigned long i;
 	double s=0;
@@ -104,8 +104,8 @@ double scallarproduct(unsigned long n, double *v1, double *v2){
 	return s;
 }
 
-//Return d orthonormal vectors of dimention n using https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process
-//The d n-vecors are concatenanted into a single vector of length n*d.
+//Return d orthonormal vectors of dimension n using https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process
+//The d n-vecors are concatenated into a single vector of length n*d.
 double *GramSchmidt(unsigned long n, unsigned d){
 	double s;
 	unsigned long m=n*d,d1,d2,m1,m2,i;
@@ -130,7 +130,7 @@ double *GramSchmidt(unsigned long n, unsigned d){
 	return vect;
 }
 
-//let A be the adjacency matrix of graph g. This put in v2 the product of the matrix A by v2. That is: v2=A*v1.
+//let A be the adjacency matrix of graph g. Puts in v2 the product of the matrix A by v2. That is: v2=A*v1.
 void prod(sparse* g, double* v1, double* v2){
 	unsigned long i;
 	bzero(v2,sizeof(double)*g->n);
@@ -189,7 +189,7 @@ void printres(FILE* file,unsigned long n,unsigned d,double *emb){
 }
 
 
-//./scalemb net.txt emb.txt d q a0 a1 ... aq
+//./RandNE net.txt emb.txt d q a0 a1 ... aq
 
 int main(int argc,char** argv){
 	sparse* g;//input graph
