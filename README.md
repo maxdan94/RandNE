@@ -22,6 +22,7 @@ gcc RandNE.c -o RandNE -O9 -lm
 
 On http://snap.stanford.edu/data/com-Orkut.html
 - d=32 and q=3: 5 minutes
+- d=32 and q=5: 10 minutes
 - d=128 and q=3: 20 minutes
 
 
