@@ -2,8 +2,8 @@
 ## Info:
 Implementation of the scalable graph embedding method suggested in [1]
 
-NOTE THAT THIS IS NOT THE IMPLEMENTATION OF THE AUTHORS OF [1]  AND IT IS NOT GUARANTEED TO WORK.
-The implementation of the authors of [1] is/will be here: https://github.com/ZW-ZHANG/RandNE.
+NOTE THAT THIS IS NOT THE IMPLEMENTATION OF THE AUTHORS OF [1].
+The implementation of the authors of [1] is here: https://github.com/ZW-ZHANG/RandNE.
 
 ## to compile:
 
@@ -22,6 +22,7 @@ gcc RandNE.c -o RandNE -O9 -lm
 
 On http://snap.stanford.edu/data/com-Orkut.html
 - d=32 and q=3: 5 minutes
+- d=32 and q=5: 10 minutes
 - d=128 and q=3: 20 minutes
 
 
