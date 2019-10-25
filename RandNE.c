@@ -109,7 +109,10 @@ double scallarproduct(unsigned long n, double *v1, double *v2){
 //The d n-vecors are concatenated into a single vector of length n*d.
 double *GramSchmidt(unsigned long n, unsigned d){
 	double s;
-	unsigned long m=n*d,d1,d2,m1,m2,i;
+	unsigned long long n_ull=(unsigned long long)n,	m=n_ull * d;//n_ull*d can exeed 4,294,967,295 (largest number stored with unsigned long long)
+	unsigned long long m1,m2,i;
+	unsigned long j;
+	unsigned d1,d2;
 	double *vect=malloc(m*sizeof(double));
 
 	srand(time(NULL));
@@ -118,12 +121,12 @@ double *GramSchmidt(unsigned long n, unsigned d){
 		vect[i]= ((double)rand()/(RAND_MAX));//CAREFUL!!!!!! According to the version of the authors, this is supposed to be the normal distribution with sigma=1/d
 	}
 	for (d1=0;d1<d;d1++){
-		m1=n*d1;
+		m1=n_ull * d1;
 		for (d2=0;d2<d1;d2++){
-			m2=n*d2;
+			m2=n_ull * d2;
 			s=scallarproduct(n,vect+m1,vect+m2);
-			for (i=0;i<n;i++){
-				vect[i+m1]-=vect[i+m2]*s;
+			for (j=0;j<n;j++){
+				vect[j+m1]-=vect[j+m2]*s;
 			}
 		}
 		normalize(n,vect+m1);
@@ -141,9 +144,9 @@ void prod(sparse* g, double* v1, double* v2){
 	}
 }
 
-//add a*v_in to v_out.
-void add(unsigned long n, double a, double* v_in, double* v_out){
-	unsigned long i;
+//add a*v_in to v_out. V_in and v_out can be very larde. n is their size.
+void add(unsigned long long n, double a, double* v_in, double* v_out){
+	unsigned long long i;
 	for (i=0;i<n;i++){
 		v_out[i]+=a*v_in[i];
 	}
@@ -152,22 +155,23 @@ void add(unsigned long n, double a, double* v_in, double* v_out){
 //cf algo 1 of [1]
 double *RandNE(sparse *g,unsigned d,unsigned q, double* a){
 	unsigned long n=g->n;//number of nodes
+	unsigned long long n_ull=(unsigned long long)n;
 	unsigned i,j;
 	double *r1=GramSchmidt(n,d),*r2=malloc(n*d*sizeof(double)),*r3;
-	double* emb=calloc(n*d,sizeof(double));//resulting embedding
+	double* emb=calloc(n_ull*d,sizeof(double));//resulting embedding
 	if (a[0]>0.){
-		add(n*d,a[0],r1,emb);
+		add(n_ull*d,a[0],r1,emb);
 	}
 
 	for (i=1;i<q+1;i++){
 		for (j=0;j<d;j++){
-			prod(g,r1+n*j,r2+n*j);
+			prod(g,r1+n_ull*j,r2+n_ull*j);
 		}
 		r3=r1;
 		r1=r2;
 		r2=r3;
 		if (a[i]>0.){
-			add(n*d,a[i],r1,emb);
+			add(n_ull*d,a[i],r1,emb);
 		}
 	}
 
@@ -180,10 +184,11 @@ double *RandNE(sparse *g,unsigned d,unsigned q, double* a){
 //printing the result
 void printres(FILE* file,unsigned long n,unsigned d,double *emb){
 	unsigned long i,j;
+	unsigned long long n_ull=(unsigned long long)n;
 	for (i=0;i<n;i++){
 		fprintf(file,"%le",emb[i]);
 		for (j=1;j<d;j++){
-			fprintf(file," %le",emb[i+j*n]);
+			fprintf(file," %le",emb[i+j*n_ull]);
 		}
 		fprintf(file,"\n");
 	}
