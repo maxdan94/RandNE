@@ -43,7 +43,7 @@ typedef struct {
 //sparse graphe structure
 typedef struct {
 	unsigned long n;//number of nodes
-	unsigned long e;//number of edges
+	unsigned long long e;//number of edges
 	edge *el;//edge list
 } sparse;
 
@@ -55,7 +55,7 @@ inline unsigned long max3(unsigned long a,unsigned long b,unsigned long c){
 
 //reading the graph
 sparse* readedgelist(char* edgelist){
-	unsigned long i, e1=NLINKS;
+	unsigned long long e1=NLINKS;
 	sparse *g=malloc(sizeof(sparse));
 	g->el=malloc(e1*sizeof(edge));
 	FILE *file;
@@ -133,7 +133,7 @@ double *GramSchmidt(unsigned long n, unsigned d){
 
 //let A be the adjacency matrix of graph g. Puts in v2 the product of the matrix A by v2. That is: v2=A*v1.
 void prod(sparse* g, double* v1, double* v2){
-	unsigned long i;
+	unsigned long long i;
 	bzero(v2,sizeof(double)*g->n);
 	for (i=0;i<g->e;i++){//better using a classical martix vector multiplication to make it parallel: v2[i]=sum_{(i,j)} v1[i].
 		v2[g->el[i].s]+=v1[g->el[i].t];
@@ -208,7 +208,7 @@ int main(int argc,char** argv){
 	printf("Reading edgelist from file %s\n",argv[1]);
 	g=readedgelist(argv[1]);
 	printf("Number of nodes = %lu\n",g->n);
-	printf("Number of edges = %lu\n",g->e);
+	printf("Number of edges = %llu\n",g->e);
 
 	printf("Dimensions of the embedding = %s\n",argv[3]);
 	d=atoi(argv[3]);
@@ -242,6 +242,7 @@ int main(int argc,char** argv){
 
 	freegraph(g);
 	free(emb);
+	free(a);
 
 	t2=time(NULL);
 	printf("- Time = %ldh%ldm%lds\n",(t2-t1)/3600,((t2-t1)%3600)/60,((t2-t1)%60));
