@@ -183,7 +183,8 @@ double *RandNE(sparse *g,unsigned d,unsigned q, double* a){
 
 //printing the result
 void printres(FILE* file,unsigned long n,unsigned d,double *emb){
-	unsigned long i,j;
+	unsigned long i;
+	unsigned j;
 	unsigned long long n_ull=(unsigned long long)n;
 	for (i=0;i<n;i++){
 		fprintf(file,"%le",emb[i]);
