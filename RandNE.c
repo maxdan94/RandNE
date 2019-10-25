@@ -30,6 +30,7 @@ Reference:
 #include <stdio.h>
 #include <math.h>
 #include <strings.h>
+#include <time.h>
 
 #define NLINKS 100000000 //maximum number of links, will increase if needed
 
