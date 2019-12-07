@@ -102,7 +102,7 @@ double *randvec(unsigned long n, double* vect){
 
 	srand(time(NULL));
 	for (i=0;i<n;i++){
-		vect[i]= ((double)rand()/(RAND_MAX));//CAREFUL!!!!!! //According to the version of the authors, this is supposed to be the normal distribution with sigma=1/d
+		vect[i]= ((double)rand()/(RAND_MAX)-0.5);//CAREFUL!!!!!! //According to the version of the authors, this is supposed to be the normal distribution with sigma=1/d
 	}
 	normalize(n,vect);
 }
